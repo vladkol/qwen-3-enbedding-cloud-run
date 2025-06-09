@@ -27,6 +27,16 @@ Simply run this command in Cloud Shell:
 
 Use you favorite Python environment to try the service with the Python code-snippet below.
 
+Since vLLM exposes an OpenAI-compatible endpoint, you need OpenAI SDK:
+
+```bash
+pip install openai
+```
+
+Now, run the code for generating text embeddings:
+
+<walkthrough-editor-open-file filePath="run.py">Edit and run in Cloud Shell Editor</walkthrough-editor-open-file>
+
 Make sure you set `CUSTOM_API_KEY` and `SERVICE_URL` variables before running it.
 
 ```python
@@ -39,8 +49,6 @@ CUSTOM_API_KEY = "ReplaceWithYourSecretText"
 # Find "🚀 Service deployed to https://..." in Cloud Shell where you ran the deployment.
 # Alternatively, go to https://console.cloud.google.com/run, and find it for `qwen3-embedding-vllm` service.
 SERVICE_URL = ""
-
-import openai
 
 from openai import OpenAI
 
