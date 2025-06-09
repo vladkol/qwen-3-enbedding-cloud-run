@@ -35,8 +35,6 @@ pip install openai
 
 Now, run the code for generating text embeddings:
 
-<walkthrough-editor-open-file filePath="run.py">Edit and run in Cloud Shell Editor</walkthrough-editor-open-file>
-
 Make sure you set `CUSTOM_API_KEY` and `SERVICE_URL` variables before running it.
 
 ```python
