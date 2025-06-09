@@ -71,7 +71,7 @@ gcloud beta run deploy "${SERVICE_NAME}" \
     --memory=32Gi \
     --gpu-type=nvidia-l4 \
     --gpu=1 \
-    --max-instances=3 \
+    --max-instances=1 \
     --no-gpu-zonal-redundancy \
     --cpu-boost \
     --no-cpu-throttling \
