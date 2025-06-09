@@ -11,6 +11,7 @@ so that the model container doesn't have to download them
 from Hugging Face Hub every time the container starts.
 * Downloads model files to a temporary local cache.
 * Uploads model files to the Storage Bucket. Options `--no-clobber` doesn't let the command overwrite existing files.
+* Creates a Service Account for Cloud Run service, and gives it read-only access to the Storage Bucket.
 * Deploys Cloud Run service `qwen3-embedding` with the following notable parameters:
     * Use NVIDIA L4 GPU (`--gpu-type=nvidia-l4` and `--gpu=1`)
     * GCS bucket is mounted to `/model-cache` directory (`--add-volume...` options).
