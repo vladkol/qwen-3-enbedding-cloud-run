@@ -1,0 +1,1 @@
+🚀 To perform deployment, run ./deploy.sh
