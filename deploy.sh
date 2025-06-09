@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-PROJECT_ID="" # <-- Replace with your Google Cloud Project ID
+PROJECT_ID="${1}" # <-- Replace with your Google Cloud Project ID
 REGION="us-central1"
 
 HF_MODEL="Qwen/Qwen3-Embedding-0.6B"
