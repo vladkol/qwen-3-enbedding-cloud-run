@@ -13,16 +13,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-PROJECT_ID="${1}" # <-- Replace with your Google Cloud Project ID
-REGION="us-central1"
+PROJECT_ID="${1}" # <-- Google Cloud Project ID to deploy to.
+CUSTOM_API_KEY="${2}" # <-- You secret text for API Key.
+REGION="us-central1" # Cloud region with Cloud Run GPU availability.
 
 HF_MODEL="Qwen/Qwen3-Embedding-0.6B"
-CUSTOM_API_KEY="ReplaceWithSecretText" # <-- Replace with your secret text
 SERVICE_NAME="qwen3-embedding-vllm"
 
 if [[ "${PROJECT_ID}" == "" ]]; then
     PROJECT_ID=$(gcloud config get-value project -q)
 fi
+
 echo "Deploying to project ${PROJECT_ID}"
 
 pip install -U "huggingface_hub[cli]" -q
@@ -62,9 +63,9 @@ gcloud beta run deploy "${SERVICE_NAME}" \
     --service-account="${SERVICE_ACCOUNT_ADDRESS}" \
     --add-volume name=model-cache-volume,type=cloud-storage,bucket=${BUCKET_NAME},readonly=true \
     --add-volume-mount volume=model-cache-volume,mount-path=/model-cache \
-    --set-env-vars VLLM_LOGGING_LEVEL=WARNING,HF_HUB_OFFLINE=1,HF_HOME=/model-cache \
+    --set-env-vars CUSTOM_API_KEY="${CUSTOM_API_KEY}",VLLM_LOGGING_LEVEL=WARNING,HF_HUB_OFFLINE=1,HF_HOME=/model-cache \
     --command="python3" \
-    --args="-m,vllm.entrypoints.openai.api_server,--model=${HF_MODEL},--task=embed,--port=8080,--api-key=${CUSTOM_API_KEY}" \
+    --args="-m,vllm.entrypoints.openai.api_server,--model=${HF_MODEL},--task=embed,--port=8080,--api-key=\$CUSTOM_API_KEY" \
     --port=8080 \
     --cpu=8 \
     --memory=32Gi \
@@ -84,4 +85,5 @@ curl "${SERVICE_URL}/v1/embeddings" \
     -H "Authorization: Bearer ${CUSTOM_API_KEY}" \
     -H "Content-Type: application/json" \
     -d "{ \"input\": [\"Hello world!\"], \"model\": \"${HF_MODEL}\" }"
-echo "Done!"
+echo "✅ Done!"
+echo "🚀 Service deployed to ${SERVICE_URL}"
