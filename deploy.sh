@@ -63,9 +63,9 @@ gcloud beta run deploy "${SERVICE_NAME}" \
     --service-account="${SERVICE_ACCOUNT_ADDRESS}" \
     --add-volume name=model-cache-volume,type=cloud-storage,bucket=${BUCKET_NAME},readonly=true \
     --add-volume-mount volume=model-cache-volume,mount-path=/model-cache \
-    --set-env-vars CUSTOM_API_KEY="${CUSTOM_API_KEY}",VLLM_LOGGING_LEVEL=WARNING,HF_HUB_OFFLINE=1,HF_HOME=/model-cache \
+    --set-env-vars VLLM_API_KEY="${CUSTOM_API_KEY}",VLLM_LOGGING_LEVEL=WARNING,HF_HUB_OFFLINE=1,HF_HOME=/model-cache \
     --command="python3" \
-    --args="-m,vllm.entrypoints.openai.api_server,--model=${HF_MODEL},--task=embed,--port=8080,--api-key=\$CUSTOM_API_KEY" \
+    --args="-m,vllm.entrypoints.openai.api_server,--model=${HF_MODEL},--task=embed,--port=8080" \
     --port=8080 \
     --cpu=8 \
     --memory=32Gi \

@@ -20,10 +20,11 @@ from Hugging Face Hub every time the container starts.
     * Another environment variable `HF_HUB_OFFLINE=1` set in `--set-env-vars` option ensures that
     vLLM doesn't re-download the model.
     * Use a vLLM container image optimized for Google Cloud (`--image="us-docker.pkg.dev/vertex-ai/vertex-vision-model-garden-dockers/pytorch-vllm-serve:20250601_0916_RC01"`)
-    * Start vLLM's OpenAI compatible server with option `--task=embed` (for Embeddings API), and `--api-key` - to set a simple key-based authentication.
+    * Start vLLM's OpenAI compatible server with option `--task=embed` (for Embeddings API).
+    * Environment variable `VLLM_API_KEY` is used for setting the API Key vLLM will expect requests to come with.
 
 > The recommended secure way to control access to Cloud Run services is to require IAM-based authentication
-(use `--no-allow-unauthenticated` rather than `--allow-unauthenticated`). Using `--api-key` option would be unnecessary in that case.
+(use `--no-allow-unauthenticated` rather than `--allow-unauthenticated`). Using `VLLM_API_KEY` would be unnecessary in that case.
 Read more about it in [Cloud Run Authentication Overview](https://cloud.google.com/run/docs/authenticating/overview).
 
 ## 🗒️ Disclaimers
