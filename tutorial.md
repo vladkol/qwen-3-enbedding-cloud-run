@@ -21,6 +21,6 @@ Simply run this command in Cloud Shell:
 
 ## Conclusion
 
-Thanks for using Google Cloud!
+Thank you for using Google Cloud!
 
 <walkthrough-conclusion-trophy></walkthrough-conclusion-trophy>
