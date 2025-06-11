@@ -30,6 +30,19 @@ pip install -U "huggingface_hub[cli]" -q
 
 set -e
 
+current_acc=$(gcloud config get core/account -q)
+if [[ "${current_acc}" == "" ]]; then
+    gcloud config set core/account "${USER_EMAIL}"
+fi
+
+echo "Making sure necessary APIs are enabled..."
+gcloud services enable \
+    storage.googleapis.com \
+    iam.googleapis.com \
+    run.googleapis.com \
+    artifactregistry.googleapis.com \
+    --project=${PROJECT_ID}
+
 echo "Creating the service account if doesn't exist..."
 SERVICE_ACCOUNT="vllm-cloud-run-sa"
 SERVICE_ACCOUNT_ADDRESS="${SERVICE_ACCOUNT}@$PROJECT_ID.iam.gserviceaccount.com"
@@ -49,7 +62,7 @@ gcloud storage buckets add-iam-policy-binding "gs://${BUCKET_NAME}" --member="se
 
 echo "Downloading the model..."
 temp_dir=$(mktemp -d)
-huggingface-cli download "${HF_MODEL}" --cache-dir="${temp_dir}"
+python3 -m huggingface_hub.commands.huggingface_cli download "${HF_MODEL}" --cache-dir="${temp_dir}"
 
 echo "Uploading model files to the bucket..."
 gcloud storage cp --recursive --no-clobber "${temp_dir}/*" "gs://${BUCKET_NAME}/hub"

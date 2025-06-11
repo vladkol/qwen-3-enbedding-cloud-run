@@ -11,10 +11,6 @@ This project will be used to run Cloud Run service with L4 GPU and to host a Clo
 
 <walkthrough-project-setup billing="true"></walkthrough-project-setup>
 
-## Please enable APIs
-
-<walkthrough-enable-apis apis="storage.googleapis.com,iam.googleapis.com,run.googleapis.com,artifactregistry.googleapis.com"></walkthrough-enable-apis>
-
 ## You are ready to deploy!
 
 Simply run this command in Cloud Shell:
