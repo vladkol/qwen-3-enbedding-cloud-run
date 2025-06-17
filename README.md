@@ -2,7 +2,7 @@
 
 Click the button below to deploy the [Qwen 3 Embedding](https://qwenlm.github.io/blog/qwen3-embedding/) service to Google [Cloud Run](https://console.cloud.google.com/run?utm_campaign=CDR_0xc245fc42_default_b423604648&utm_medium=external&utm_source=social) with [vLLM](https://docs.vllm.ai/).
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/?terminal=true&show=terminal&cloudshell_git_repo=https://github.com/vladkol/qwen-3-enbedding-cloud-run&cloudshell_tutorial=tutorial.md&utm_campaign=CDR_0xc245fc42_default_b423604648&utm_medium=external&utm_source=social)
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/?terminal=true&show=terminal&cloudshell_git_repo=https://github.com/vladkol/qwen-3-enbedding-cloud-run&cloudshell_tutorial=tutorial.md&utm_campaign=CDR_0xc245fc42_default_b423604648&utm_medium=external&utm_source=social)
 
 The deployment script performs the following operations:
 
